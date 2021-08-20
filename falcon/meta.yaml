@@ -1,0 +1,39 @@
+package:
+  name: falcon
+  version: "0.9.16"
+
+source:
+  #git_url: https://github.com/NIST-MNI/falcon.git
+  #git_rev: develop-0.9.16
+  path: /home/vfonov/src/falcon-gh
+
+requirements:
+  build:
+    - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
+    - libtiff
+    - cmake
+    - make
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  run:
+    - libtiff
+    - povray
+    - imagemagick
+    - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
+
+test:
+  commands:
+    - falcon_cortex_initocs --version
+    - falcon_cortex_initics --version
+    - falcon_cortex_refine -help
+
+build:
+  number: 10
+  string: {{ minc_toolkit_v2_var }}_{{ PKG_BUILDNUM }}
+
+about:
+  home: https://github.com/vfonov/falcon
+  license: GPL3
+  summary: 'Falcon cortical thickness measurement'
+  description: |
+    Falcon is a set of tools for cortical thickness measurements

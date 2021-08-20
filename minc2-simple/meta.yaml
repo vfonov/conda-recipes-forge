@@ -1,0 +1,46 @@
+{% set name = "minc2-simple" %}
+{% set version = "0.2.30" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/vfonov/minc2-simple/archive/v2.2.30.tar.gz
+  sha256: 241bf68379f79139d7e07500d49f3f666878ccb86cb7f9c89cdb3e69fc63668b
+
+build:
+  number: 3
+  script: "{{ PYTHON }} python/setup.py install "
+
+requirements:
+  host:
+    - numpy >=1.20
+    - pip
+    - python
+    - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+    - cffi
+    - six
+  build:
+    - {{ compiler('c') }}        [linux]
+    - {{ compiler('cxx') }}      [linux]
+    - setuptools
+    - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+  run:
+    - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+    - python
+    - numpy
+    - six
+    - cffi
+
+about:
+  home: https://github.com/BIC-MNI/pyezminc
+  license: GPL2
+  summary: 'Python library for MINC IO, using minc2 API and CFFI'
+  description: |
+    Python library for MINC IO, using minc2 API and CFFI
+  dev_url: https://github.com/BIC-MNI/pyezminc
+
+extra:
+  recipe-maintainers:
+    - vfonov

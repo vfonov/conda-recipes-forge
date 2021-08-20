@@ -1,0 +1,90 @@
+{% set name = "r-rminc" %}
+{% set version = "1.5.3.0" %}
+
+# probably will not wotk on windows anyway 
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://github.com/vfonov/RMINC/archive/refs/tags/v1.5.3.0.tidy.tar.gz
+  sha256: f2e6e6d86f8b19d5d75676d222919255eefaa44cbd6b967b9a9643ab171ae859
+
+build:
+  number: 1
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - {{ compiler('c') }}        [linux]
+    - {{ compiler('cxx') }}      [linux]
+    - {{ compiler('fortran') }}  [linux]
+    - r-base
+    - r-dplyr
+    - r-batchtools
+    - r-tidyr
+    - r-readr
+    - r-lme4
+    - r-purrr
+    - r-shiny
+    - r-gridbase
+    - r-Rcpp
+    - r-Matrix
+    - r-tibble
+    - r-yaml
+    - r-data.tree
+    - r-visNetwork
+    - r-rjson
+    - r-DT
+    - r-rlang
+    - r-bigstatsr
+    - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+    - zlib
+
+  build:
+    - {{posix}}make
+    - {{ compiler('c') }}        [linux]
+    - {{ compiler('cxx') }}      [linux]
+    - {{ compiler('fortran') }}  [linux]
+    - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+    - r-base
+    - zlib
+
+  run:
+    - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+    - zlib
+    - r-base
+    - r-dplyr
+    - r-batchtools
+    - r-tidyr
+    - r-readr
+    - r-lme4
+    - r-purrr
+    - r-shiny
+    - r-gridbase
+    - r-Rcpp
+    - r-Matrix
+    - r-tibble
+    - r-yaml
+    - r-data.tree
+    - r-visNetwork
+    - r-rjson
+    - r-DT
+    - r-rlang
+    - r-bigstatsr
+
+about:
+  home: https://github.com/Mouse-Imaging-Centre/RMINC
+  summary: 'MINC inteface to R'
+  dev_url: https://github.com/Mouse-Imaging-Centre/RMINC
+
+extra:
+  recipe-maintainers:
+    - vfonov

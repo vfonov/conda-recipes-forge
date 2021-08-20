@@ -1,0 +1,6 @@
+minc_toolkit_v2:
+   - 1.9.18=noblas_h1234567_10
+python:
+    - 3.8
+    - 3.9
+    - 3.7

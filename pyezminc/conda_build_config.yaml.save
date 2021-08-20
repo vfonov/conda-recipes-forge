@@ -1,0 +1,8 @@
+minc_toolkit_v2:
+   - 1.9.18=openblas_h1234567_9
+   - 1.9.18=noblas_h1234567_9
+python:
+    - 2.7
+    - 3.6
+    - 3.7
+    - 3.8
