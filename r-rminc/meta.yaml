@@ -14,7 +14,7 @@ source:
   sha256: f2e6e6d86f8b19d5d75676d222919255eefaa44cbd6b967b9a9643ab171ae859
 
 build:
-  number: 1
+  number: 2
 
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -45,7 +45,7 @@ requirements:
     - r-DT
     - r-rlang
     - r-bigstatsr
-    - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+    - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
     - zlib
 
   build:
@@ -53,12 +53,12 @@ requirements:
     - {{ compiler('c') }}        [linux]
     - {{ compiler('cxx') }}      [linux]
     - {{ compiler('fortran') }}  [linux]
-    - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+    - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
     - r-base
     - zlib
 
   run:
-    - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+    - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
     - zlib
     - r-base
     - r-dplyr

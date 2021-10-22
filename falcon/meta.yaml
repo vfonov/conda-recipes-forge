@@ -10,17 +10,39 @@ source:
 requirements:
   build:
     - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
-    - libtiff
     - cmake
     - make
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libx11') }}     # [linux]
+    - xorg-libx11            # [linux]
+    - xorg-libxrandr         # [linux]
+    - xorg-libxinerama       # [linux]
+    - xorg-libxcursor        # [linux]
+    - xorg-libxi             # [linux]
+    - {{ cdt('libselinux') }}  # [linux]
+    - {{ cdt('libxdamage') }}     # [linux]
+    - {{ cdt('libxdamage-devel') }}     # [linux]
+    - {{ cdt('libxxf86vm') }}  # [linux]
+    - {{ cdt('libxxf86vm-devel') }}  # [linux]
+    - {{ cdt('libxext') }}     # [linux]
+    - {{ cdt('libxext-devel') }}     # [linux]
+    - {{ cdt('libxcursor') }}     # [linux]
+    - {{ cdt('libxcursor-devel') }}     # [linux]
+    - {{ cdt('libxrandr') }}     # [linux]
+    - {{ cdt('libxrandr-devel') }}     # [linux]
+    - {{ cdt('libxi') }}     # [linux]
+    - {{ cdt('libxi-devel') }}     # [linux]
+    - {{ cdt('libxinerama') }}     # [linux]
+    - {{ cdt('libxinerama-devel') }}     # [linux]
   run:
-    - libtiff
     - povray
     - imagemagick
     - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
-
+  host:
+    - xorg-libxfixes  # [linux]
 test:
   commands:
     - falcon_cortex_initocs --version
@@ -28,7 +50,7 @@ test:
     - falcon_cortex_refine -help
 
 build:
-  number: 10
+  number: 24
   string: {{ minc_toolkit_v2_var }}_{{ PKG_BUILDNUM }}
 
 about:

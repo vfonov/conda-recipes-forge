@@ -1,12 +1,12 @@
 package:
   name: minc-toolkit-v2
-  version: "1.9.18"
+  version: "1.9.19"
 
 source:
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/archive/refs/heads/develop-1.9.18-WIP.tar.gz\
-  url:  file:///home/vfonov/src/minc-toolkit-v2.WIP.tar.gz
-  sha256: 40294f51a8e79fe2e7d8fd6c6cdf8fce42229fd77960a72825bcff149ea5dfac
+  url:  file:///home/vfonov/src/minc-toolkit-v2-1.9.19.WIP.tar.gz
+  sha256: 6fc29faaf7f4c7ac6761942459516f567018b5f025dfe830a00821c8ed5c796d
   #sha256: eda5424f1046dcf39e87b75e8d207edf381318af30228a655ec1c704f4fc8699
   #git_url: https://github.com/BIC-MNI/minc-toolkit-v2.git
   #git_rev: develop-1.9.18
@@ -32,9 +32,47 @@ requirements:
     - openjpeg==2.3
     - perl
     - expat
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libx11') }}     # [linux]
+    - xorg-libx11            # [linux]
+    - xorg-libxrandr         # [linux]
+    - xorg-libxinerama       # [linux]
+    - xorg-libxcursor        # [linux]
+    - xorg-libxi             # [linux]
+    - xorg-libxau                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libxfixes                     # [linux]
+    - libglu                         # [linux]
+    - libxcb                         # [linux]
+    - {{ cdt('libselinux') }}  # [linux]
+    - {{ cdt('libxdamage') }}     # [linux]
+    - {{ cdt('libxdamage-devel') }}     # [linux]
+    - {{ cdt('libxext') }}     # [linux]
+    - {{ cdt('libxext-devel') }}     # [linux]
+    - {{ cdt('libxcursor') }}     # [linux]
+    - {{ cdt('libxcursor-devel') }}     # [linux]
+    - {{ cdt('libxrandr') }}     # [linux]
+    - {{ cdt('libxrandr-devel') }}     # [linux]
+    - {{ cdt('libxi') }}     # [linux]
+    - {{ cdt('libxi-devel') }}     # [linux]
+    - {{ cdt('libxinerama') }}     # [linux]
+    - {{ cdt('libxinerama-devel') }}     # [linux]
+    - {{ cdt('libxxf86vm') }}  # [linux]
+    - {{ cdt('libxxf86vm-devel') }}  # [linux]
+    - freeglut # [linux]
   host:
+    - xorg-libxfixes  # [linux]
+    - xorg-libx11     # [linux]
+    - libglu                             # [linux]
+    - libxcb                             # [linux]
+    - xorg-libxau                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libxi                         # [linux]
     - perl
     - zlib
+    - expat
+    - freeglut # [linux]
   run:
     - perl
     - hdf5=={{hdf5}}
@@ -47,7 +85,13 @@ requirements:
     - openjpeg
     - expat
     - pcre
-  
+    - libxcb                             # [linux]
+    - xorg-libx11                        # [linux]
+    - xorg-libxau                        # [linux]
+    - xorg-libxext                       # [linux]
+    - xorg-libxfixes                     # [linux]
+    - xorg-libxi                         # [linux]  
+    - freeglut # [linux]
 
 test:
   commands:
@@ -55,8 +99,8 @@ test:
     - antsRegistration --version # [minctoolkit_variant != 'lite'] 
 
 build:
-  number: 10
-  string: {{ minctoolkit_variant }}_h{{PKG_HASH}}_{{ PKG_BUILDNUM }}
+  number: 1
+  string: {{ minctoolkit_variant }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_compatible('hdf5', max_pin='x.x') }}
     - {{ pin_compatible('libnetcdf', max_pin='x.x') }}
