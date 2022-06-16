@@ -1,5 +1,5 @@
 minc_toolkit_v2:
-   - 1.9.18=noblas_h1234567_11
+   - 1.9.18.2=noblas_h1234567_1
 python:
     - 3.8
     - 3.9

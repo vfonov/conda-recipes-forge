@@ -1,6 +1,6 @@
 package:
   name: falcon
-  version: "0.9.16"
+  version: "0.9.16.2"
 
 source:
   #git_url: https://github.com/NIST-MNI/falcon.git
@@ -50,7 +50,7 @@ test:
     - falcon_cortex_refine -help
 
 build:
-  number: 24
+  number: 1
   string: {{ minc_toolkit_v2_var }}_{{ PKG_BUILDNUM }}
 
 about:

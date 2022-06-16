@@ -144,6 +144,8 @@ mkdir -p ${PREFIX}/share
 
 make install
 
+# HACK: remove file that conflicts with standard package
+rm -f ${PREFIX}/lib/pkgconfig/libopenjp2.pc
 
 if [ -n $building_itk ];then
 
