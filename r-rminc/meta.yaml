@@ -26,7 +26,7 @@ requirements:
     - {{ compiler('c') }}        [linux]
     - {{ compiler('cxx') }}      [linux]
     - {{ compiler('fortran') }}  [linux]
-    - r-base
+    - r-base {{ r_base }}
     - r-dplyr
     - r-batchtools
     - r-tidyr
@@ -55,13 +55,13 @@ requirements:
     - {{ compiler('cxx') }}      [linux]
     - {{ compiler('fortran') }}  [linux]
     - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
-    - r-base
+    - r-base {{ r_base }}
     - zlib
 
   run:
     - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
     - zlib
-    - r-base
+    - r-base {{ r_base }}
     - r-dplyr
     - r-batchtools
     - r-tidyr

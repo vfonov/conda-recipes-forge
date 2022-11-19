@@ -33,17 +33,29 @@ else # building on MacOSX
 fi
 
 
-if [ ${minctoolkit_variant} == "lite" ];then
+if [[ ${minctoolkit_variant} == "lite" ]];then
   CMAKE_FLAGS=" \
     -DMT_BUILD_LITE:BOOL=ON \
     -DMT_BUILD_ITK_TOOLS:BOOL=OFF \
     -DMT_BUILD_ANTS:BOOL=OFF \
     -DMT_BUILD_C3D:BOOL=OFF \
     -DMT_BUILD_ELASTIX:BOOL=OFF "
-elif [ ${minctoolkit_variant} == "noblas" ];then
+elif [[ ${minctoolkit_variant} == "noblas" ]];then
  building_itk=yes
  # force not to use openblas to avoid conflits with other software
  CMAKE_FLAGS=" \
+  -DMT_BUILD_ITK_TOOLS:BOOL=ON \
+  -DMT_BUILD_OPENBLAS:BOOL=OFF \
+  -DOpenBLAS_FOUND:BOOL=OFF \
+  -DMT_BUILD_LITE:BOOL=OFF \
+  -DMT_BUILD_ANTS:BOOL=ON \
+  -DMT_BUILD_C3D:BOOL=ON \
+  -DMT_BUILD_ELASTIX:BOOL=ON "
+elif [[ ${minctoolkit_variant} == "legacy" ]];then
+ building_itk=yes
+ # force not to use openblas to avoid conflits with other software
+ CMAKE_FLAGS=" \
+  -DMNI_AUTOREG_OLD_AMOEBA_INIT:BOOL=ON \
   -DMT_BUILD_ITK_TOOLS:BOOL=ON \
   -DMT_BUILD_OPENBLAS:BOOL=OFF \
   -DOpenBLAS_FOUND:BOOL=OFF \
@@ -70,11 +82,28 @@ else
 fi
 
 
+if [[ ${minctoolkit_visual} == "full" ]];then
+    CMAKE_FLAGS="${CMAKE_FLAGS}
+      -DOPENGL_EGL_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
+      -DOPENGL_GLX_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
+      -DOPENGL_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
+      -DOPENGL_glu_LIBRARY:FILEPATH=${CONDA_PREFIX}/lib/libGLU${SHLIB_EXT} \
+      -DX11_X11_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
+      -DX11_Xdamage_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
+      -DX11_Xi_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
+      -DX11_Xinerama_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
+      -DX11_Xcursor_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
+      -DX11_Xrandr_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
+      -DMT_BUILD_VISUAL_TOOLS:BOOL=ON "
+else # no X11 stuff
+    CMAKE_FLAGS="${CMAKE_FLAGS} \
+         -DMT_BUILD_VISUAL_TOOLS:BOOL=OFF "
+fi
+
 cmake .. \
       -DCMAKE_INSTALL_PREFIX=${PREFIX} \
       -DCMAKE_BUILD_TYPE=Release \
       -DMT_BUILD_SHARED_LIBS:BOOL=ON \
-      -DMT_BUILD_VISUAL_TOOLS:BOOL=ON \
       -DUSE_SYSTEM_OPENJPEG:BOOL=ON \
       -DUSE_SYSTEM_FFTW3D:BOOL=ON \
       -DUSE_SYSTEM_FFTW3F:BOOL=ON \
@@ -116,10 +145,6 @@ cmake .. \
       -DJPEG_LIBRARY:FILEPATH=${CONDA_PREFIX}/lib/libjpeg${SHLIB_EXT} \
       -DNETCDF_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
       -DNETCDF_LIBRARY:FILEPATH=${CONDA_PREFIX}/lib/libnetcdf${SHLIB_EXT} \
-      -DOPENGL_EGL_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
-      -DOPENGL_GLX_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
-      -DOPENGL_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
-      -DOPENGL_glu_LIBRARY:FILEPATH=${CONDA_PREFIX}/lib/libGLU${SHLIB_EXT} \
       -DOPENJPEG_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include/openjpeg-2.3 \
       -DOPENJPEG_LIBRARY:FILEPATH=${CONDA_PREFIX}/lib/libopenjp2${SHLIB_EXT} \
       -DPCRECPP_LIBRARY:FILEPATH=${CONDA_PREFIX}/lib/libpcrecpp${SHLIB_EXT} \
@@ -128,12 +153,6 @@ cmake .. \
       -DPERL_EXECUTABLE:FILEPATH=${CONDA_PREFIX}/bin/perl \
       -DZLIB_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
       -DZLIB_LIBRARY_RELEASE:FILEPATH=${CONDA_PREFIX}/lib/libz${SHLIB_EXT} \
-      -DX11_X11_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
-      -DX11_Xdamage_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
-      -DX11_Xi_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
-      -DX11_Xinerama_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
-      -DX11_Xcursor_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
-      -DX11_Xrandr_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
       ${CMAKE_FLAGS}
 
 # build and install
