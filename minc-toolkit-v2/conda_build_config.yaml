@@ -1,9 +1,9 @@
 minctoolkit_variant:
-#  - noblas
-  - legacy
+  - noblas
+#  - legacy
 minctoolkit_visual:
   - novisual
-# - full
+  - full
 hdf5: 1.10.*
 libnetcdf: 4.8.*
 pin_run_as_build:

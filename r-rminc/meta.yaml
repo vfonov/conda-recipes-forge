@@ -14,7 +14,7 @@ source:
   sha256: 9637f23d36aa851ba3b80928d0532274d7ad7ae09efe1247e08b709a77b18996
 
 build:
-  number: 4
+  number: 5
 
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -81,6 +81,7 @@ requirements:
     - r-rlang
     - r-bigstatsr
     - r-plotrix
+    - r-lmertest
 
 about:
   home: https://github.com/Mouse-Imaging-Centre/RMINC
