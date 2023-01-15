@@ -1,0 +1,122 @@
+package:
+  name: minc-toolkit-v2
+  version: "1.9.19"
+
+source:
+  #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
+  #url: https://github.com/BIC-MNI/minc-toolkit-v2/archive/refs/heads/develop-1.9.18-WIP.tar.gz\
+  #url:  file:///home/vfonov/src/minc-toolkit-v2-1.9.18.2.tar.gz
+  #sha256: c299f6681259626cc5d36051723f2d4411cae8808ac40ef8879a23091e802e65
+  #sha256: eda5424f1046dcf39e87b75e8d207edf381318af30228a655ec1c704f4fc8699
+  #git_url: https://github.com/BIC-MNI/minc-toolkit-v2.git
+  #git_rev: develop-1.9.18
+  path: /Users/vfonov/src/minc-toolkit-v2
+
+requirements:
+  build:
+    - cmake
+    - make
+    - flex
+    - bison
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}  
+    - {{ compiler('fortran') }}
+    - openblas            # [minctoolkit_variant == 'openblas'] 
+    - hdf5=={{hdf5}}
+    - pcre
+    - libnetcdf=={{libnetcdf}}
+    - zlib
+    - gsl
+    - fftw
+    - jpeg
+    - openjpeg==2.3
+    - perl==5.32
+    - expat
+    - {{ cdt('mesa-libgl-devel') }}  # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('mesa-dri-drivers') }}  # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libx11') }}     # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libx11            # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxrandr         # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxinerama       # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxcursor        # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxi             # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxau                        # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxext                       # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxfixes                     # [ minctoolkit_visual != 'novisual' ]
+    - libglu                         # [ minctoolkit_visual != 'novisual' ]
+    - libxcb                         # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libselinux') }}  # [linux]
+    - {{ cdt('libxdamage') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxdamage-devel') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxext') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxext-devel') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxcursor') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxcursor-devel') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxrandr') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxrandr-devel') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxi') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxi-devel') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxinerama') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxinerama-devel') }}     # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxxf86vm') }}  # [ minctoolkit_visual != 'novisual' ]
+    - {{ cdt('libxxf86vm-devel') }}  # [ minctoolkit_visual != 'novisual' ]
+    - freeglut # [ minctoolkit_visual != 'novisual' ]
+  host:
+    - xorg-libxfixes  # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libx11     # [ minctoolkit_visual != 'novisual' ]
+    - libglu                             # [ minctoolkit_visual != 'novisual' ]
+    - libxcb                             # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxau                        # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxext                       # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxi                         # [ minctoolkit_visual != 'novisual' ]
+    - perl==5.32
+    - zlib
+    - expat
+    - freeglut # [ minctoolkit_visual != 'novisual' ]
+  run:
+    - perl==5.32
+    - hdf5=={{hdf5}}
+    - libnetcdf=={{libnetcdf}}
+    - zlib
+    - gsl
+    - jpeg
+    - fftw
+    - jpeg
+    - openjpeg
+    - expat
+    - pcre
+    - libxcb                             # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libx11                        # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxau                        # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxext                       # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxfixes                     # [ minctoolkit_visual != 'novisual' ]
+    - xorg-libxi                         # [ minctoolkit_visual != 'novisual' ]  
+    - freeglut                           # [ minctoolkit_visual != 'novisual' ]
+
+test:
+  commands:
+    - minccalc -version
+    - antsRegistration --version # [minctoolkit_variant != 'lite'] 
+
+build:
+  number: 1
+  string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  run_exports:
+    - {{ pin_compatible('hdf5', max_pin='x.x') }}
+    - {{ pin_compatible('libnetcdf', max_pin='x.x') }}
+    - {{ pin_compatible('fftw', max_pin='x.x') }}
+    - openjpeg
+    - zlib
+    - {{ pin_compatible('gsl', max_pin='x.x') }}
+    - jpeg
+    - expat
+    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
+
+about:
+  home: http://bic-mni.github.io/
+  license: GPL3
+  summary: 'Toolkit for processing MRI scans (external libraries)'
+  description: |
+    This metaproject bundles multiple MINC-based packages that historically have been developed somewhat independently.
+  doc_url: http://bic-mni.github.io/man-pages
+  dev_url: https://github.com/BIC-MNI/minc-toolkit-v2
