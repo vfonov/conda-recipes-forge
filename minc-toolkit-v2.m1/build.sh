@@ -22,7 +22,6 @@ if [[ -z ${MACOSX_DEPLOYMENT_TARGET} ]];then
     # maybe not such a good adea after all
 
     export CMAKE_LIBRARY_PATH=${CONDA_PREFIX}/lib:${CONDA_PREFIX}/lib64:${CONDA_PREFIX}/x86_64-conda_cos6-linux-gnu/sysroot/lib
-
 else # building on MacOSX
     export CC=clang
     export CXX=clang++
@@ -83,7 +82,12 @@ fi
 
 
 if [[ ${minctoolkit_visual} == "full" ]];then
-    CMAKE_FLAGS="${CMAKE_FLAGS}
+  CMAKE_FLAGS="${CMAKE_FLAGS} \
+     -DMT_BUILD_VISUAL_TOOLS:BOOL=ON"
+
+ if [[ -z ${MACOSX_DEPLOYMENT_TARGET} ]];then
+    # linux
+     CMAKE_FLAGS="${CMAKE_FLAGS} \ 
       -DOPENGL_EGL_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
       -DOPENGL_GLX_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
       -DOPENGL_INCLUDE_DIR:PATH=${CONDA_PREFIX}/include \
@@ -93,11 +97,13 @@ if [[ ${minctoolkit_visual} == "full" ]];then
       -DX11_Xi_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
       -DX11_Xinerama_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
       -DX11_Xcursor_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
-      -DX11_Xrandr_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
-      -DMT_BUILD_VISUAL_TOOLS:BOOL=ON "
+      -DX11_Xrandr_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include "
+  #else
+    # macos
+  fi
+
 else # no X11 stuff
-    CMAKE_FLAGS="${CMAKE_FLAGS} \
-         -DMT_BUILD_VISUAL_TOOLS:BOOL=OFF "
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DMT_BUILD_VISUAL_TOOLS:BOOL=OFF "
 fi
 
 cmake .. \
