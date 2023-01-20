@@ -2,7 +2,7 @@ minctoolkit_variant:
   - noblas
 #  - legacy
 minctoolkit_visual:
-#  - novisual
+  - novisual
   - full
 hdf5: 1.10.*
 libnetcdf: 4.8.*

@@ -6,12 +6,15 @@ package:
   version: "{{ version }}"
 
 source:
-  url: https://github.com/vfonov/minc2-simple/archive/v2.2.30.tar.gz
-  sha256: 241bf68379f79139d7e07500d49f3f666878ccb86cb7f9c89cdb3e69fc63668b
+  #url: https://github.com/vfonov/minc2-simple/archive/v2.2.30.tar.gz
+  #sha256: 241bf68379f79139d7e07500d49f3f666878ccb86cb7f9c89cdb3e69fc63668b
+  path: /Users/vfonov/src/minc2-simple
 
 build:
-  number: 4
+  number: 5
   script: "{{ PYTHON }} python/setup.py install "
+#  script: "{{ PYTHON }} -m build python  "
+#  script: python -m pip install --no-deps --ignore-installed python
 
 requirements:
   host:
@@ -22,10 +25,15 @@ requirements:
     - cffi
     - six
   build:
-    - {{ compiler('c') }}        [linux]
-    - {{ compiler('cxx') }}      [linux]
+    - {{ compiler('c') }}        
+    - {{ compiler('cxx') }}      
     - setuptools
+    - python
+    - pip
     - minc-toolkit-v2 {{ minc_toolkit_v2 }}
+    - six
+    - cffi
+    - build
   run:
     - minc-toolkit-v2 {{ minc_toolkit_v2 }}
     - python
