@@ -10,7 +10,7 @@ source:
   #sha256: eda5424f1046dcf39e87b75e8d207edf381318af30228a655ec1c704f4fc8699
   #git_url: https://github.com/BIC-MNI/minc-toolkit-v2.git
   #git_rev: develop-1.9.18
-  path: /Users/vfonov/src/minc-toolkit-v2
+  path: /home/vfonov/src/minc-toolkit-v2
 
 requirements:
   build:
