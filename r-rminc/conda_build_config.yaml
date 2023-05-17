@@ -1,8 +1,8 @@
 minc_toolkit_v2_var:
-   - noblas_novisual_h1234567_0
+   - noblas_novisual_h1234567_2
 #   - legacy_novisual_h1234567_1
-   - noblas_full_h1234567_0
-minc_toolkit_v2_ver: 1.9.18.3
+   - noblas_full_h1234567_2
+minc_toolkit_v2_ver: 1.9.18.4
 r_base:
     - 4.2.2
     - 4.1.3

@@ -1,6 +1,6 @@
 package:
   name: minc-toolkit-v2
-  version: "1.9.18.3"
+  version: "1.9.18.5"
 
 source:
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
@@ -20,7 +20,7 @@ requirements:
     - bison
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}  
-    - {{ compiler('fortran') }}
+#    - {{ compiler('fortran') }} 
     - openblas            # [minctoolkit_variant == 'openblas'] 
     - hdf5=={{hdf5}}
     - pcre
