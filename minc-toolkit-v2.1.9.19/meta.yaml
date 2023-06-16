@@ -1,6 +1,6 @@
 package:
   name: minc-toolkit-v2
-  version: "1.9.19"
+  version: "1.9.19.1"
 
 source:
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
@@ -28,8 +28,8 @@ requirements:
     - zlib
     - gsl
     - fftw
-    - jpeg
-    - openjpeg==2.3
+    - libjpeg-turbo
+    - openjpeg
     - perl==5.32
     - expat
     - {{ cdt('mesa-libgl-devel') }}  # [ linux and minctoolkit_visual != 'novisual' ]
@@ -79,9 +79,8 @@ requirements:
     - libnetcdf=={{libnetcdf}}
     - zlib
     - gsl
-    - jpeg
     - fftw
-    - jpeg
+    - libjpeg-turbo
     - openjpeg
     - expat
     - pcre
@@ -102,7 +101,7 @@ build:
   number: 2
   string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
-    - {{ pin_compatible('hdf5', max_pin='x.x') }}
+    - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
     - {{ pin_compatible('libnetcdf', max_pin='x.x') }}
     - {{ pin_compatible('fftw', max_pin='x.x') }}
     - openjpeg

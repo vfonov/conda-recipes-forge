@@ -1,7 +1,6 @@
 minc_toolkit_v2:
-   - 1.9.18.4=noblas_novisual_h1234567_2
-#   - 1.9.18.3=legacy_novisual_h1234567_1
-   - 1.9.18.4=noblas_full_h1234567_2
+   - 1.9.18.5=noblas_novisual_h1234567_3
+   - 1.9.18.5=noblas_full_h1234567_3
 python:
     - 3.8
     - 3.9

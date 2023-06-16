@@ -10,7 +10,9 @@ source:
   #sha256: eda5424f1046dcf39e87b75e8d207edf381318af30228a655ec1c704f4fc8699
   #git_url: https://github.com/BIC-MNI/minc-toolkit-v2.git
   #git_rev: develop-1.9.18
-  path: /home/vfonov/src/minc-toolkit-v2
+  #path: /home/vfonov/src/minc-toolkit-v2
+  url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.3/minc-toolkit-v2-1.9.18.3.tar.gz
+  sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
 
 requirements:
   build:
@@ -99,7 +101,7 @@ test:
     - antsRegistration --version # [minctoolkit_variant != 'lite'] 
 
 build:
-  number: 1
+  number: 3
   string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_compatible('hdf5', max_pin='x.x') }}

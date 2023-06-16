@@ -1,5 +1,5 @@
 {% set name = "minc2-simple" %}
-{% set version = "0.2.30" %}
+{% set version = "0.2.30.1" %}
 
 package:
   name: "{{ name|lower }}"
@@ -11,7 +11,7 @@ source:
   path: /home/vfonov/src/minc2-simple
 
 build:
-  number: 5
+  number: 0
   script: "{{ PYTHON }} python/setup.py install "
 #  script: "{{ PYTHON }} -m build python  "
 #  script: python -m pip install --no-deps --ignore-installed python
