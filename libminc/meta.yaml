@@ -1,0 +1,63 @@
+package:
+  name: libminc
+  version: "2.4.06"
+
+source:
+  #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
+  #url: https://github.com/BIC-MNI/minc-toolkit-v2/archive/refs/heads/develop-1.9.18-WIP.tar.gz\
+  #url:  file:///home/vfonov/src/minc-toolkit-v2-1.9.18.2.tar.gz
+  #sha256: c299f6681259626cc5d36051723f2d4411cae8808ac40ef8879a23091e802e65
+  #sha256: eda5424f1046dcf39e87b75e8d207edf381318af30228a655ec1c704f4fc8699
+  #git_url: https://github.com/BIC-MNI/minc-toolkit-v2.git
+  #git_rev: develop-1.9.18
+  #path: /home/vfonov/src/minc-toolkit-v2
+  #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.3/minc-toolkit-v2-1.9.18.3.tar.gz
+  #sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
+  path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4/libminc
+
+requirements:
+  build:
+    - cmake
+    - make
+    - {{ compiler('c') }}
+    - hdf5 {{hdf5}}
+    - libnetcdf {{libnetcdf}}
+    - zlib
+  host:
+    - zlib
+  run:
+    - hdf5 {{hdf5}}
+    - libnetcdf {{libnetcdf}}
+    - zlib
+
+# test:
+#   commands:
+#     - minccalc -version
+#     - antsRegistration --version # [minctoolkit_variant != 'lite'] 
+
+build:
+  number: 1
+#  string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  # force_use_keys:
+  #   - hdf5
+  #   - libnetcdf
+  #   - c_compiler_version
+#  run_exports:
+#    - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
+#    - {{ pin_compatible('libnetcdf', max_pin='x.x') }}
+#    - {{ pin_compatible('fftw', max_pin='x.x') }}
+#    - openjpeg
+#    - zlib
+#    - {{ pin_compatible('gsl', max_pin='x.x') }}
+#    - jpeg
+#    - expat
+#    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
+
+about:
+  home: http://bic-mni.github.io/
+  license: GPL3
+  summary: 'libminc'
+  description: |
+    LIBMINC library.
+  doc_url: http://bic-mni.github.io/man-pages
+  dev_url: https://github.com/BIC-MNI/libminc

@@ -1,0 +1,56 @@
+{% set name = "minc2-simple-sa" %}
+{% set version = "0.2.30.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  #url: https://github.com/vfonov/minc2-simple/archive/v2.2.30.tar.gz
+  #sha256: 241bf68379f79139d7e07500d49f3f666878ccb86cb7f9c89cdb3e69fc63668b
+  path: /home/vfonov/src/minc2-simple
+
+build:
+  number: 0
+  script_env:
+    - MINC_TOOLKIT="{{PREFIX}}"
+#  script: "{{ PYTHON }} python/setup.py install "
+#  script: "{{ PYTHON }} -m build python  "
+#  script: python -m pip install --no-deps --ignore-installed python
+  script: "{{ PYTHON }} -m pip install --no-deps --ignore-installed ./python -vv"
+
+requirements:
+  host:
+    - numpy >=1.20
+    - pip
+    - python
+    - libminc {{ libminc_ver }}
+    - cffi
+    - six
+  build:
+    - {{ compiler('c') }}
+    - setuptools
+    - python
+    - pip
+    - libminc {{ libminc_ver }}
+    - six
+    - cffi
+    - build
+  run:
+    - libminc {{ libminc_ver }}
+    - python
+    - numpy
+    - six
+    - cffi
+
+about:
+  home: https://github.com/NIST-MNI/minc2-simple
+  license: GPL2
+  summary: 'Python library for MINC IO, using minc2 API and CFFI'
+  description: |
+    Python library for MINC IO, using minc2 API and CFFI
+  dev_url: https://github.com/NIST-MNI/minc2-simple
+
+extra:
+  recipe-maintainers:
+    - vfonov
