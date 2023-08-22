@@ -1,0 +1,74 @@
+package:
+  name: minctools
+  version: "2.4.06"
+
+source:
+  #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
+  #url: https://github.com/BIC-MNI/minc-toolkit-v2/archive/refs/heads/develop-1.9.18-WIP.tar.gz\
+  #url:  file:///home/vfonov/src/minc-toolkit-v2-1.9.18.2.tar.gz
+  #sha256: c299f6681259626cc5d36051723f2d4411cae8808ac40ef8879a23091e802e65
+  #sha256: eda5424f1046dcf39e87b75e8d207edf381318af30228a655ec1c704f4fc8699
+  #git_url: https://github.com/BIC-MNI/minc-toolkit-v2.git
+  #git_rev: develop-1.9.18
+  #path: /home/vfonov/src/minc-toolkit-v2
+  #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.3/minc-toolkit-v2-1.9.18.3.tar.gz
+  #sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
+  - path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4/minctools
+    folder: minctools
+  - url: http://downloads.sourceforge.net/project/niftilib/nifticlib/nifticlib_2_0_0/nifticlib-2.0.0.tar.gz
+    sha256: a3e988e6a32ec57833056f6b09f940c69e79829028da121ff2c5c6f7f94a7f88
+    folder: nifticlib
+
+requirements:
+  build:
+    - cmake
+    - make
+    - flex
+    - bison
+    - {{ compiler('c') }}
+    - libminc {{ libminc_ver }}
+    - jpeg
+    - openjpeg==2.3
+  host:
+    - zlib
+    - flex
+    - bison
+    - libminc {{ libminc_ver }}
+  run:
+    - libminc {{ libminc_ver }}
+    - zlib
+
+test:
+   commands:
+     - minccalc -version
+     - mincresample -version
+     - dcm2mnc -version
+     - mnc2nii -version
+     - nii2mnc -version
+
+build:
+  number: 1
+#  string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  # force_use_keys:
+  #   - hdf5
+  #   - libnetcdf
+  #   - c_compiler_version
+#  run_exports:
+#    - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
+#    - {{ pin_compatible('libnetcdf', max_pin='x.x') }}
+#    - {{ pin_compatible('fftw', max_pin='x.x') }}
+#    - openjpeg
+#    - zlib
+#    - {{ pin_compatible('gsl', max_pin='x.x') }}
+#    - jpeg
+#    - expat
+#    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
+
+about:
+  home: http://bic-mni.github.io/
+  license: GPL3
+  summary: 'libminc'
+  description: |
+    LIBMINC library.
+  doc_url: http://bic-mni.github.io/man-pages
+  dev_url: https://github.com/BIC-MNI/minc-tools

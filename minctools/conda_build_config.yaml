@@ -1,0 +1,6 @@
+libminc_ver:
+   - 2.4.06
+c_compiler_version: # [unix]
+  - 12.2.0 # [linux]
+# cxx_compiler_version: # [unix]
+#    - 12.2.0 # [linux]
