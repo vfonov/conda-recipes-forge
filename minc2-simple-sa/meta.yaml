@@ -19,6 +19,12 @@ build:
 #  script: python -m pip install --no-deps --ignore-installed python
   script: "{{ PYTHON }} -m pip install --no-deps --ignore-installed ./python -vv"
 
+test:
+  script_env:
+    - MINC_TOOLKIT="{{PREFIX}}"
+  imports:
+    - minc2_simple
+
 requirements:
   host:
     - numpy >=1.20
