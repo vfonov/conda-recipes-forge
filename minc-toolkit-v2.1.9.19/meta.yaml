@@ -29,7 +29,7 @@ requirements:
     - gsl
     - fftw
     - libjpeg-turbo
-    - openjpeg
+    - openjpeg==2.3
     - perl==5.32
     - expat
     - {{ cdt('mesa-libgl-devel') }}  # [ linux and minctoolkit_visual != 'novisual' ]

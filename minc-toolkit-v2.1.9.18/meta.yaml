@@ -1,6 +1,6 @@
 package:
   name: minc-toolkit-v2
-  version: "1.9.18.5"
+  version: "1.9.18.4"
 
 source:
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
@@ -11,8 +11,9 @@ source:
   #git_url: https://github.com/BIC-MNI/minc-toolkit-v2.git
   #git_rev: develop-1.9.18
   #path: /home/vfonov/src/minc-toolkit-v2
-  url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.3/minc-toolkit-v2-1.9.18.3.tar.gz
-  sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
+  #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.3/minc-toolkit-v2-1.9.18.3.tar.gz
+  #sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
+  path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4
 
 requirements:
   build:
@@ -21,8 +22,8 @@ requirements:
     - flex
     - bison
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}  
-#    - {{ compiler('fortran') }} 
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }} 
     - openblas            # [minctoolkit_variant == 'openblas'] 
     - hdf5=={{hdf5}}
     - pcre
@@ -78,11 +79,12 @@ requirements:
   run:
     - perl
     - hdf5=={{hdf5}}
-    - libnetcdf=={{libnetcdf}}
+    - libnetcdf
     - zlib
-    - gsl
+    - {{ pin_compatible('gsl', max_pin='x.x') }}
     - jpeg
-    - fftw
+    - {{ pin_compatible('fftw', max_pin='x.x') }}
+    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
     - jpeg
     - openjpeg
     - expat
@@ -93,7 +95,7 @@ requirements:
     - xorg-libxext                       # [ minctoolkit_visual != 'novisual' ]
     - xorg-libxfixes                     # [ minctoolkit_visual != 'novisual' ]
     - xorg-libxi                         # [ minctoolkit_visual != 'novisual' ]  
-    - freeglut # [ minctoolkit_visual != 'novisual' ]
+    - freeglut                           # [ minctoolkit_visual != 'novisual' ]
 
 test:
   commands:
@@ -103,16 +105,20 @@ test:
 build:
   number: 3
   string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
-  run_exports:
-    - {{ pin_compatible('hdf5', max_pin='x.x') }}
-    - {{ pin_compatible('libnetcdf', max_pin='x.x') }}
-    - {{ pin_compatible('fftw', max_pin='x.x') }}
-    - openjpeg
-    - zlib
-    - {{ pin_compatible('gsl', max_pin='x.x') }}
-    - jpeg
-    - expat
-    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
+  force_use_keys:
+    - hdf5
+    - libnetcdf
+    - c_compiler_version
+#  run_exports:
+#    - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
+#    - {{ pin_compatible('libnetcdf', max_pin='x.x') }}
+#    - {{ pin_compatible('fftw', max_pin='x.x') }}
+#    - openjpeg
+#    - zlib
+#    - {{ pin_compatible('gsl', max_pin='x.x') }}
+#    - jpeg
+#    - expat
+#    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
 
 about:
   home: http://bic-mni.github.io/

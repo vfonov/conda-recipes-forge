@@ -50,7 +50,7 @@ test:
     - falcon_cortex_refine -help
 
 build:
-  number: 3
+  number: 4
   string: {{ minc_toolkit_v2_var }}_{{ PKG_BUILDNUM }}
 
 about:
