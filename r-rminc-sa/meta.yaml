@@ -1,5 +1,5 @@
 {% set name = "r-rminc-sa" %}
-{% set version = "1.5.3.0" %}
+{% set version = "1.5.3.1" %}
 
 # probably will not wotk on windows anyway 
 {% set posix = 'm2-' if win else '' %}
@@ -10,8 +10,9 @@ package:
   version: "{{ version }}"
 
 source:
-  url: https://github.com/vfonov/RMINC/archive/refs/tags/v1.5.3.0.tidy.bg.tar.gz
-  sha256: 9637f23d36aa851ba3b80928d0532274d7ad7ae09efe1247e08b709a77b18996
+  #url: https://github.com/vfonov/RMINC/archive/refs/tags/v1.5.3.0.tidy.bg.tar.gz
+  #sha256: 9637f23d36aa851ba3b80928d0532274d7ad7ae09efe1247e08b709a77b18996
+  path: /home/vfonov/src/RMINC
 
 build:
   number: 0

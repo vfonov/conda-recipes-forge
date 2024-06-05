@@ -20,15 +20,14 @@ requirements:
     - cmake
     - make
     - {{ compiler('c') }}
-    - hdf5 {{hdf5}}
-    - libnetcdf {{libnetcdf}}
-    - zlib
+    - hdf5 {{hdf5}} nompi_*
+    - libnetcdf {{libnetcdf}} nompi_*
   host:
-    - zlib
+#    - libzlib
   run:
-    - hdf5 {{hdf5}}
-    - libnetcdf {{libnetcdf}}
-    - zlib
+    - hdf5 {{hdf5}} nompi_*
+    - libnetcdf {{libnetcdf}} nompi_*
+#    - zlib 
 
 # test:
 #   commands:
@@ -36,7 +35,7 @@ requirements:
 #     - antsRegistration --version # [minctoolkit_variant != 'lite'] 
 
 build:
-  number: 1
+  number: 3
 #  string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   # force_use_keys:
   #   - hdf5
@@ -56,7 +55,7 @@ build:
 about:
   home: http://bic-mni.github.io/
   license: GPL3
-  summary: 'libminc'
+  summary: 'libminc standalone'
   description: |
     LIBMINC library.
   doc_url: http://bic-mni.github.io/man-pages

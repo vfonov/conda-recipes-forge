@@ -1,5 +1,5 @@
 minc_toolkit_v2_var:
-   - noblas_novisual_h1234567_2
+   - noblas_novisual_h1234567_3
 #   - noblas_full_h1234567_2
 minc_toolkit_v2_ver: 1.9.18.4
 c_compiler_version: # [unix]

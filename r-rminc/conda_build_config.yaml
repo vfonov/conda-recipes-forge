@@ -1,13 +1,13 @@
 minc_toolkit_v2_var:
-   - noblas_novisual_h1234567_2
+   - noblas_novisual_h1234567_3
 #   - legacy_novisual_h1234567_1
 #   - noblas_full_h1234567_3
 minc_toolkit_v2_ver: 1.9.18.4
 r_base:
 #    - 4.3.1
 #    - 4.2.3
-    - 4.1.3
-    - 4.0.5
+#    - 4.1.3
+#    - 4.0.5
 #c_compiler_version: # [unix]
 #  - 12.2.0 # [linux]
 #cxx_compiler_version: 

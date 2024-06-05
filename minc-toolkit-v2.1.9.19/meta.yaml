@@ -96,9 +96,11 @@ test:
   commands:
     - minccalc -version
     - antsRegistration --version # [minctoolkit_variant != 'lite'] 
+    # - itk_patch_morphology # TODO: add a test that these are present
+    # - minc_anlm
 
 build:
-  number: 2
+  number: 4
   string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
