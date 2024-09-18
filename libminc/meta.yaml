@@ -8,12 +8,12 @@ source:
   #url:  file:///home/vfonov/src/minc-toolkit-v2-1.9.18.2.tar.gz
   #sha256: c299f6681259626cc5d36051723f2d4411cae8808ac40ef8879a23091e802e65
   #sha256: eda5424f1046dcf39e87b75e8d207edf381318af30228a655ec1c704f4fc8699
-  #git_url: https://github.com/BIC-MNI/minc-toolkit-v2.git
-  #git_rev: develop-1.9.18
+  git_url: https://github.com/BIC-MNI/libminc.git
+  git_rev: develop
   #path: /home/vfonov/src/minc-toolkit-v2
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.3/minc-toolkit-v2-1.9.18.3.tar.gz
   #sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
-  path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4/libminc
+  #path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4/libminc
 
 requirements:
   build:

@@ -1,8 +1,9 @@
 hdf5: 
-  - 1.10.6 
-  - 1.12.2
+#  - 1.10.6 
+#  - 1.12.2
+   - 1.14.3
 # =nompi_h6a2412b_1114
-libnetcdf: 4.8.1
+libnetcdf: 4.9.2
 # = nompi_hcd642e3_100
 pin_run_as_build:
     libnetcdf:
