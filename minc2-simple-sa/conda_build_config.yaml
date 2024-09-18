@@ -4,7 +4,8 @@ python:
     - 3.9
     - 3.10
     - 3.11
-c_compiler_version: # [unix]
+    - 3.12
+c_compiler_version: # [linux]
   - 12.2.0 # [linux]
 # cxx_compiler_version: 
 #   - 12.2.0 # [linux]

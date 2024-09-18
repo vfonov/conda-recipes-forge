@@ -8,7 +8,10 @@ package:
 source:
   #url: https://github.com/vfonov/minc2-simple/archive/v2.2.30.tar.gz
   #sha256: 241bf68379f79139d7e07500d49f3f666878ccb86cb7f9c89cdb3e69fc63668b
-  path: /home/vfonov/src/minc2-simple
+  #path: /home/vfonov/src/minc2-simple
+  git_url: https://github.com/vfonov/minc2-simple.git
+  git_rev: develop
+ 
 
 build:
   number: 0
@@ -41,7 +44,6 @@ requirements:
     - libminc {{ libminc_ver }}
     - six
     - cffi
-    - build
   run:
     - libminc {{ libminc_ver }}
     - python
