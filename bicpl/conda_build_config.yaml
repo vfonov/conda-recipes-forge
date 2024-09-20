@@ -1,0 +1,27 @@
+libminc_ver:
+   - 2.4.06
+hdf5: 
+   - 1.10.6 
+   - 1.12.2
+   - 1.14.3
+# =nompi_h6a2412b_1114
+libnetcdf:
+   - 4.8.1 
+   - 4.8.1 
+   - 4.9.2
+#c_compiler_version: # [unix]
+#  - 12.2.0 # [linux]
+#  - 12.2.0 # [linux]
+#  - 13.2.0 # [linux]
+#cxx_compiler_version: # [unix]
+#  - 12.2.0 # [linux]
+zip_keys:
+  - hdf5
+  - libnetcdf
+#  - c_compiler_version
+pin_run_as_build:
+    libnetcdf:
+      max_pin: x.x
+    hdf5:
+      max_pin: x.x.x
+      min_pin: x.x.x
