@@ -29,6 +29,8 @@ requirements:
     - libminc {{ libminc_ver }}
     - jpeg
     - openjpeg==2.3
+    - hdf5 {{hdf5}} nompi_*
+    - libnetcdf {{libnetcdf}} nompi_*
   host:
     - zlib
     - flex
