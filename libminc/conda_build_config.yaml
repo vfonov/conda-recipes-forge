@@ -4,7 +4,7 @@ hdf5:
    - 1.14.3
 # =nompi_h6a2412b_1114
 libnetcdf:
-   - 4.8.1 
+   - 4.7.4
    - 4.8.1 
    - 4.9.2
 #c_compiler_version: # [unix]

@@ -1,5 +1,5 @@
 package:
-  name: bicpl
+  name: minc-bicpl
   version: "2.0.1"
 
 source:
@@ -15,9 +15,9 @@ source:
   #sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
   #- path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4/minctools
   #  folder: minctools
-  git_url: https://github.com/BIC-MNI/bicpl.git
-  git_rev: develop
-  #path: /home/vfonov/src/minc-toolkit-v2/bicpl
+  #git_url: https://github.com/BIC-MNI/bicpl.git
+  #git_rev: develop
+  path: /home/vfonov/src/minc-toolkit-v2/bicpl
 
 requirements:
   build:
@@ -28,19 +28,23 @@ requirements:
     - hdf5 {{hdf5}} nompi_*
     - libnetcdf {{libnetcdf}} nompi_*
     - netpbm
-  host:
-    - zlib
-    - libminc {{ libminc_ver }}
+  # host:
+  #   - zlib
+  #   - libminc {{ libminc_ver }}
+  #   - netpbm
   run:
-    - libminc {{ libminc_ver }}
     - zlib
+    - libminc {{ libminc_ver }}
+    - netpbm
 
 #test: # TODO?
 #   commands:
 #     - colour_object -version
 
 build:
-  number: 2
+  number: 5
+  has_prefix_files:
+    - lib/BICPLConfig.cmake
 
 about:
   home: http://bic-mni.github.io/

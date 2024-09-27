@@ -13,7 +13,10 @@ source:
   #path: /home/vfonov/src/minc-toolkit-v2
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.3/minc-toolkit-v2-1.9.18.3.tar.gz
   #sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
-  - path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4/minctools
+  #- path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4/minctools
+  #  folder: minctools
+  - git_url: https://github.com/BIC-MNI/minc-tools.git
+    git_rev: develop
     folder: minctools
   - url: http://downloads.sourceforge.net/project/niftilib/nifticlib/nifticlib_2_0_0/nifticlib-2.0.0.tar.gz
     sha256: a3e988e6a32ec57833056f6b09f940c69e79829028da121ff2c5c6f7f94a7f88
