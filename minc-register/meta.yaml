@@ -15,9 +15,9 @@ source:
   #sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
   #- path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4/minctools
   #  folder: minctools
-  #git_url: https://github.com/BIC-MNI/bicpl.git
-  #git_rev: develop
-  path: /home/vfonov/src/minc-toolkit-v2/Register
+  git_url: https://github.com/BIC-MNI/bicpl.git
+  git_rev: develop-conda
+  #path: /home/vfonov/src/minc-toolkit-v2/Register
 
 requirements:
   build:
