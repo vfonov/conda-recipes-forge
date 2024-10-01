@@ -28,10 +28,6 @@ requirements:
     - hdf5 {{hdf5}} nompi_*
     - libnetcdf {{libnetcdf}} nompi_*
     - netpbm
-  # host:
-  #   - zlib
-  #   - libminc {{ libminc_ver }}
-  #   - netpbm
   run:
     - zlib
     - libminc {{ libminc_ver }}
