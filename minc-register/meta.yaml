@@ -73,12 +73,12 @@ requirements:
     - freeglut # [ linux  ]
     - zlib
 
-# test: # TODO?
-#    commands:
-#      - register -version
+test: # TODO?
+    commands:
+      - register -version
 
 build:
-  number: 3
+  number: 4
 
 about:
   home: http://bic-mni.github.io/

@@ -1,0 +1,54 @@
+package:
+  name: mni_autoreg
+  version: "0.99.71"
+
+source:
+  path: /home/vfonov/src/minc-toolkit-v2/mni_autoreg
+
+requirements:
+  build:
+    - cmake
+    - make
+    - {{ compiler('c') }}
+    - libminc {{ libminc_ver }}
+    - hdf5 {{hdf5}} nompi_*
+    - libnetcdf {{libnetcdf}} nompi_*
+  host:
+    - libminc {{ libminc_ver }}
+    - zlib
+    - minctools
+  run:
+    - libminc {{ libminc_ver }}
+    - zlib
+    - minctools
+
+test:
+   commands:
+     - nii2mnc -version
+
+build:
+  number: 1
+#  string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  # force_use_keys:
+  #   - hdf5
+  #   - libnetcdf
+  #   - c_compiler_version
+#  run_exports:
+#    - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
+#    - {{ pin_compatible('libnetcdf', max_pin='x.x') }}
+#    - {{ pin_compatible('fftw', max_pin='x.x') }}
+#    - openjpeg
+#    - zlib
+#    - {{ pin_compatible('gsl', max_pin='x.x') }}
+#    - jpeg
+#    - expat
+#    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
+
+about:
+  home: http://bic-mni.github.io/
+  license: GPL3
+  summary: 'libminc'
+  description: |
+    LIBMINC library.
+  doc_url: http://bic-mni.github.io/man-pages
+  dev_url: https://github.com/BIC-MNI/minc-tools

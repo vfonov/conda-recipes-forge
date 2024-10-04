@@ -1,0 +1,59 @@
+package:
+  name: mni_oobicpl
+  version: "0.4.51"
+
+source:
+  path: /home/vfonov/src/minc-toolkit-v2/oobicpl
+
+requirements:
+  build:
+    - cmake
+    - make
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - libminc {{ libminc_ver }}
+    - hdf5 {{hdf5}} nompi_*
+    - libnetcdf {{libnetcdf}} nompi_*
+    - mni_arguments
+    - minc-bicpl
+    - pcre
+  host:
+    - libminc {{ libminc_ver }}
+    - zlib
+  run:
+    - libminc {{ libminc_ver }}
+    - zlib
+    - mni_arguments
+    - minc-bicpl
+    - pcre
+
+# test:
+#    commands:
+#      - create_lines -help
+
+build:
+  number: 1
+#  string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  # force_use_keys:
+  #   - hdf5
+  #   - libnetcdf
+  #   - c_compiler_version
+#  run_exports:
+#    - {{ pin_compatible('hdf5', max_pin='x.x.x') }}
+#    - {{ pin_compatible('libnetcdf', max_pin='x.x') }}
+#    - {{ pin_compatible('fftw', max_pin='x.x') }}
+#    - openjpeg
+#    - zlib
+#    - {{ pin_compatible('gsl', max_pin='x.x') }}
+#    - jpeg
+#    - expat
+#    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
+
+about:
+  home: http://bic-mni.github.io/
+  license: GPL3
+  summary: 'libminc'
+  description: |
+    LIBMINC library.
+  doc_url: http://bic-mni.github.io/man-pages
+  dev_url: https://github.com/BIC-MNI/minc-tools
