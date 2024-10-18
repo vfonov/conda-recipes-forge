@@ -1,5 +1,5 @@
 package:
-  name: minc-bicpl
+  name: mni_bicpl
   version: "2.0.1"
 
 source:
@@ -24,13 +24,11 @@ requirements:
     - cmake
     - make
     - {{ compiler('c') }}
-    - libminc {{ libminc_ver }}
-    - hdf5 {{hdf5}} nompi_*
-    - libnetcdf {{libnetcdf}} nompi_*
+    - mni_libminc {{ libminc_ver }}
     - netpbm
   run:
     - zlib
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
     - netpbm
 
 #test: # TODO?
@@ -45,7 +43,7 @@ build:
 about:
   home: http://bic-mni.github.io/
   license: GPL3
-  summary: 'bicpl library'
+  summary: 'MNI bicpl library'
   description: |
     MNI BICPL library.
   doc_url: http://bic-mni.github.io/man-pages

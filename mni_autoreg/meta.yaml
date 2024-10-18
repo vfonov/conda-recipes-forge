@@ -10,17 +10,15 @@ requirements:
     - cmake
     - make
     - {{ compiler('c') }}
-    - libminc {{ libminc_ver }}
-    - hdf5 {{hdf5}} nompi_*
-    - libnetcdf {{libnetcdf}} nompi_*
+    - mni_libminc {{ libminc_ver }}
   host:
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
     - zlib
-    - minctools
+    - mni_minctools
   run:
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
     - zlib
-    - minctools
+    - mni_minctools
 
 test:
    commands:
@@ -44,11 +42,16 @@ build:
 #    - expat
 #    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
 
+test:
+   commands:
+     - minctracc -version
+
+
 about:
   home: http://bic-mni.github.io/
   license: GPL3
-  summary: 'libminc'
+  summary: 'MNI autoreg tools (minctracc)'
   description: |
-    LIBMINC library.
+    MNI autoreg tools (minctracc)
   doc_url: http://bic-mni.github.io/man-pages
-  dev_url: https://github.com/BIC-MNI/minc-tools
+  dev_url: https://github.com/BIC-MNI/mni_autoreg

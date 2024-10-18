@@ -1,9 +1,9 @@
 package:
-  name: mni_oobicpl
-  version: "0.4.51"
+  name: mni_inormalize
+  version: "1.1.11"
 
 source:
-  path: /home/vfonov/src/minc-toolkit-v2/oobicpl
+  path: /home/vfonov/src/minc-toolkit-v2/inormalize
 
 requirements:
   build:
@@ -12,22 +12,12 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - mni_libminc {{ libminc_ver }}
-    - mni_arguments
-    - mni_bicpl
-    - pcre
+    - mni_ebtks
   host:
-    - mni_libminc {{ libminc_ver }}
-    - zlib
   run:
     - mni_libminc {{ libminc_ver }}
-    - zlib
-    - mni_arguments
-    - mni_bicpl
-    - pcre
+    - mni_ebtks
 
-# test:
-#    commands:
-#      - create_lines -help
 
 build:
   number: 1
@@ -47,11 +37,16 @@ build:
 #    - expat
 #    - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
 
+test:
+   commands:
+     - inormalize -version
+
+
 about:
   home: http://bic-mni.github.io/
   license: GPL3
-  summary: 'MNI oobicpl library'
+  summary: 'MNI inormalize tool'
   description: |
-    OOBICPL library
+    inormalize tool
   doc_url: http://bic-mni.github.io/man-pages
-  dev_url: https://github.com/BIC-MNI/oobicpl
+  dev_url: https://github.com/BIC-MNI/inormalize

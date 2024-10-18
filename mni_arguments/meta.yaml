@@ -11,10 +11,6 @@ requirements:
     - make
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-  # host:
-  #   - zlib
-  # run:
-  #   - zlib
 
 # test:
 #    commands:
@@ -41,8 +37,8 @@ build:
 about:
   home: http://bic-mni.github.io/
   license: GPL3
-  summary: 'libminc'
+  summary: 'MNI Arguments library'
   description: |
-    LIBMINC library.
+    MNI Arguments low-level library
   doc_url: http://bic-mni.github.io/man-pages
   dev_url: https://github.com/BIC-MNI/minc-tools

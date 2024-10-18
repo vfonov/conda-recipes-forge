@@ -1,5 +1,5 @@
 package:
-  name: libminc
+  name: mni_libminc
   version: "2.4.06"
 
 source:
@@ -55,8 +55,8 @@ build:
 about:
   home: http://bic-mni.github.io/
   license: GPL3
-  summary: 'libminc standalone'
+  summary: 'libminc library for .mnc file format'
   description: |
-    LIBMINC library.
+    libminc library
   doc_url: http://bic-mni.github.io/man-pages
   dev_url: https://github.com/BIC-MNI/libminc

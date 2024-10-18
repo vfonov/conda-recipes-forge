@@ -1,5 +1,5 @@
 package:
-  name: minctools
+  name: mni_minctools
   version: "2.4.06"
 
 source:
@@ -29,18 +29,16 @@ requirements:
     - flex
     - bison
     - {{ compiler('c') }}
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
     - jpeg
     - openjpeg==2.3
-    - hdf5 {{hdf5}} nompi_*
-    - libnetcdf {{libnetcdf}} nompi_*
   host:
     - zlib
     - flex
     - bison
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
   run:
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
     - zlib
 
 test:
@@ -72,8 +70,8 @@ build:
 about:
   home: http://bic-mni.github.io/
   license: GPL3
-  summary: 'libminc'
+  summary: 'tools for working with MINC files'
   description: |
-    LIBMINC library.
+    tools for working with MINC files
   doc_url: http://bic-mni.github.io/man-pages
   dev_url: https://github.com/BIC-MNI/minc-tools

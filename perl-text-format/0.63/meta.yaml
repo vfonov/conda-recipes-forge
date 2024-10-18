@@ -1,0 +1,44 @@
+{% set name = "perl-text-format" %}
+{% set version = "0.63" %}
+{% set sha256 = "fc64654f7d8da7071760ea0116e112b6d661b0a7bc3188dff1b2d52fb6a663cb" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/S/SH/SHLOMIF/Text-Format-0.63.tar.gz
+  sha256: {{ sha256 }}
+
+# If this is a new build for the same version, increment the build
+# number. If you do not include this key, it defaults to 0.
+build:
+  number: 0
+  run_exports:
+    weak:
+      - {{ name }} ={{ version }}
+
+requirements:
+  build:
+    - perl >=5.22
+    - make
+
+  run:
+    - perl >=5.22
+
+test:
+  # Perl 'use' tests
+  imports:
+    - Text::Format
+
+  # You can also put a file called run_test.pl (or run_test.py) in the recipe
+  # that will be run at test time.
+
+about:
+  home: http://www.shlomifish.org/open-source/projects/Text-Format/
+  license: perl_5
+  summary: 'Various subroutines to format text.'
+
+# See
+# https://docs.conda.io/projects/conda-build for
+# more information about meta.yaml

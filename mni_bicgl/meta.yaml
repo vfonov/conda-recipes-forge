@@ -1,5 +1,5 @@
 package:
-  name: minc-bicgl
+  name: mni_bicgl
   version: "2.0.1"
 
 source:
@@ -24,10 +24,8 @@ requirements:
     - cmake
     - make
     - {{ compiler('c') }}
-    - libminc {{ libminc_ver }}
-    - hdf5 {{hdf5}} nompi_*
-    - libnetcdf {{libnetcdf}} nompi_*
-    - minc-bicpl
+    - mni_libminc {{ libminc_ver }}
+    - mni_bicpl
     - {{ cdt('mesa-libgl-devel') }}  # [ linux  ]
     - {{ cdt('mesa-dri-drivers') }}  # [ linux  ]
     - {{ cdt('libx11') }}     # [ linux  ]
@@ -59,7 +57,7 @@ requirements:
     - freeglut # [ linux  ]
   host:
     - zlib
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
     - xorg-libxfixes  # [ linux ]
     - xorg-libx11     # [ linux ]
     - libglu                             # [ linux ]
@@ -68,7 +66,7 @@ requirements:
     - xorg-libxext                       # [ linux ]
     - xorg-libxi                         # [ linux ]
   run:
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
     - zlib
 
 #test: # TODO?

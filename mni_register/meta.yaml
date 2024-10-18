@@ -1,5 +1,5 @@
 package:
-  name: minc-register
+  name: mni_register
   version: "1.4.01"
 
 source:
@@ -24,11 +24,9 @@ requirements:
     - cmake
     - make
     - {{ compiler('c') }}
-    - hdf5 {{hdf5}} nompi_*
-    - libnetcdf {{libnetcdf}} nompi_*
-    - libminc {{libminc_ver}}
-    - minc-bicpl
-    - minc-bicgl
+    - mni_libminc {{libminc_ver}}
+    - mni_bicpl
+    - mni_bicgl
     - {{ cdt('mesa-libgl-devel') }}  # [ linux  ]
     - {{ cdt('mesa-dri-drivers') }}  # [ linux  ]
     - {{ cdt('libx11') }}     # [ linux  ]
@@ -66,10 +64,10 @@ requirements:
     - xorg-libxau                        # [ linux ]
     - xorg-libxext                       # [ linux ]
     - xorg-libxi                         # [ linux ]
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
     - zlib
   run:
-    - libminc {{ libminc_ver }}
+    - mni_libminc {{ libminc_ver }}
     - freeglut # [ linux  ]
     - zlib
 
