@@ -1,6 +1,6 @@
 package:
   name: falcon
-  version: "0.9.16.11"
+  version: "0.9.16.13"
 
 source:
   #git_url: https://github.com/NIST-MNI/falcon.git
@@ -15,34 +15,32 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ cdt('mesa-libgl-devel') }}  # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
-    - {{ cdt('libx11') }}     # [linux]
-    - xorg-libx11            # [linux]
-    - xorg-libxrandr         # [linux]
-    - xorg-libxinerama       # [linux]
-    - xorg-libxcursor        # [linux]
-    - xorg-libxi             # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libx11') }}     # [linux and falcon_visual != 'novisual']
+    - xorg-libx11            # [linux and falcon_visual != 'novisual']
+    - xorg-libxrandr         # [linux and falcon_visual != 'novisual']
+    - xorg-libxinerama       # [linux and falcon_visual != 'novisual']
+    - xorg-libxcursor        # [linux and falcon_visual != 'novisual']
+    - xorg-libxi             # [linux and falcon_visual != 'novisual']
     - {{ cdt('libselinux') }}  # [linux]
-    - {{ cdt('libxdamage') }}     # [linux]
-    - {{ cdt('libxdamage-devel') }}     # [linux]
-    - {{ cdt('libxxf86vm') }}  # [linux]
-    - {{ cdt('libxxf86vm-devel') }}  # [linux]
-    - {{ cdt('libxext') }}     # [linux]
-    - {{ cdt('libxext-devel') }}     # [linux]
-    - {{ cdt('libxcursor') }}     # [linux]
-    - {{ cdt('libxcursor-devel') }}     # [linux]
-    - {{ cdt('libxrandr') }}     # [linux]
-    - {{ cdt('libxrandr-devel') }}     # [linux]
-    - {{ cdt('libxi') }}     # [linux]
-    - {{ cdt('libxi-devel') }}     # [linux]
-    - {{ cdt('libxinerama') }}     # [linux]
-    - {{ cdt('libxinerama-devel') }}     # [linux]
+    - {{ cdt('libxdamage') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxdamage-devel') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxxf86vm') }}  # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxxf86vm-devel') }}  # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxext') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxext-devel') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxcursor') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxcursor-devel') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxrandr') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxrandr-devel') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxi') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxi-devel') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxinerama') }}     # [linux and falcon_visual != 'novisual']
+    - {{ cdt('libxinerama-devel') }}     # [linux and falcon_visual != 'novisual']
   run:
-    - povray
-    - imagemagick
     - minc-toolkit-v2 {{ minc_toolkit_v2_ver }} {{ minc_toolkit_v2_var }}
   host:
-    - xorg-libxfixes  # [linux]
+    - xorg-libxfixes  # [linux and falcon_visual != 'novisual']
 test:
   commands:
     - falcon_cortex_initocs --version
@@ -50,8 +48,8 @@ test:
     - falcon_cortex_refine -help
 
 build:
-  number: 4
-  string: {{ minc_toolkit_v2_var }}_{{ PKG_BUILDNUM }}
+  number: 2
+  string: {{ minc_toolkit_v2_var }}_{{ PKG_BUILDNUM }}_{{falcon_visual}}
 
 about:
   home: https://github.com/vfonov/falcon

@@ -1,7 +1,8 @@
 minc_toolkit_v2_var:
-   - noblas_novisual_h1234567_3
+   - noblas_novisual_h1234567_4
 #   - noblas_full_h1234567_2
-minc_toolkit_v2_ver: 1.9.18.4
+falcon_visual: novisual
+minc_toolkit_v2_ver: 1.9.19.2
 c_compiler_version: # [unix]
   - 12.2.0 # [linux]
 cxx_compiler_version: 

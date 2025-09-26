@@ -22,11 +22,7 @@ else # building on MacOSX
     export CMAKE_LIBRARY_PATH=${CONDA_PREFIX}/lib:${CONDA_PREFIX}/lib64:
 fi
 
-cmake .. \
-      -DLIBIGL_OPENGL:BOOL=ON \
-      -DLIBIGL_OPENGL_GLFW:BOOL=ON \
-      -DLIBIGL_GLFW:BOOL=ON \
-      -DLIBIGL_IMGUI:BOOL=ON \
+CMAKE_FLAGS="\
       -DLIBIGL_EMBREE:BOOL=ON \
       -DLIBIGL_PNG:BOOL=ON \
       -DLIBIGL_COPYLEFT_COMISO:BOOL=OFF \
@@ -48,23 +44,50 @@ cmake .. \
       -DEMBREE_TUTORIALS:BOOL=OFF  \
       -DEMBREE_ISPC_SUPPORT:BOOL=OFF \
       -DCMAKE_INSTALL_PREFIX=${PREFIX} \
-      -DBUILD_NVK:BOOL=ON \
       -DCMAKE_BUILD_TYPE=Release \
       -DHAVE_POVRAY:BOOL=ON \
       -DMINC_TOOLKIT_DIR:PATH=${CONDA_PREFIX} \
       -DLIBMINC_DIR:PATH=${CONDA_PREFIX}/lib \
+      "
+
+if [[ "${falcon_visual}" == "full" ]];then
+    CMAKE_FLAGS="${CMAKE_FLAGS} \
+      -DLIBIGL_OPENGL:BOOL=ON \
+      -DLIBIGL_OPENGL_GLFW:BOOL=ON \
+      -DLIBIGL_GLFW:BOOL=ON \
+      -DLIBIGL_IMGUI:BOOL=ON \
+      -DBUILD_NVK:BOOL=ON \
       -DX11_X11_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
       -DX11_Xdamage_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
       -DX11_Xi_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
       -DX11_Xinerama_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
       -DX11_Xcursor_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
-      -DX11_Xrandr_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include
+      -DX11_Xrandr_INCLUDE_PATH:PATH=${CONDA_PREFIX}/include \
+    "
+else
+    CMAKE_FLAGS="${CMAKE_FLAGS} \
+      -DLIBIGL_OPENGL:BOOL=OFF \
+      -DLIBIGL_OPENGL_GLFW:BOOL=OFF \
+      -DLIBIGL_GLFW:BOOL=OFF \
+      -DLIBIGL_WITH_OPENGL:BOOL=OFF \
+      -DLIBIGL_WITH_OPENGL_GLFW:BOOL=OFF \
+      -DLIBIGL_IMGUI:BOOL=OFF \
+      -DBUILD_NVK:BOOL=OFF \
+      -DLIBIGL_WITH_OPENGL:BOOL=OFF \
+      -DLIBIGL_WITH_OPENGL_GLFW:BOOL=OFF \
+    "
+fi
+
+
 if [[ -z ${MACOSX_DEPLOYMENT_TARGET} ]];then
-    cmake ..  -DUSE_OPENMP:BOOL=ON
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DUSE_OPENMP:BOOL=ON"
 else
     # OpenMP is not available on MacOSX
-    cmake ..  -DUSE_OPENMP:BOOL=OFF
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DUSE_OPENMP:BOOL=OFF"
 fi
+
+cmake .. ${CMAKE_FLAGS}
+
 
 # build and install
 make -j${CPU_COUNT} && make install #
