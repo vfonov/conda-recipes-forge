@@ -1,6 +1,6 @@
 package:
   name: minc-toolkit-v2
-  version: "1.9.18.4"
+  version: "1.9.18.5"
 
 source:
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
@@ -103,7 +103,7 @@ test:
     - antsRegistration --version # [minctoolkit_variant != 'lite'] 
 
 build:
-  number: 3
+  number: 2
   string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   force_use_keys:
     - hdf5

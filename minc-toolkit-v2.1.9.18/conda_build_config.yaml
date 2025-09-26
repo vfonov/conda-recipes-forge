@@ -4,9 +4,9 @@ minctoolkit_variant:
 minctoolkit_visual:
   - novisual
 #  - full
-hdf5: 1.10.6 
+hdf5: 1.12.2
 # =nompi_h6a2412b_1114
-libnetcdf: 4.8.1
+libnetcdf: 4.9.0
 # = nompi_hcd642e3_100
 pin_run_as_build:
     libnetcdf:
