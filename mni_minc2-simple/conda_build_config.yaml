@@ -1,10 +1,11 @@
 libminc_ver:
    - 2.4.06
 python:
-    - 3.9
-    - 3.10
-    - 3.11
-    - 3.12
+#    - 3.9
+#    - 3.10
+#    - 3.11
+#    - 3.12
+    - 3.13
 #c_compiler_version: # [linux]
 #  - 12.2.0 # [linux]
 # cxx_compiler_version: 
