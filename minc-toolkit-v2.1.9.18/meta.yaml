@@ -1,6 +1,6 @@
 package:
   name: minc-toolkit-v2
-  version: "1.9.18.7"
+  version: "1.9.18.9"
 
 source:
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
@@ -13,26 +13,26 @@ source:
   #path: /home/vfonov/src/minc-toolkit-v2
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.3/minc-toolkit-v2-1.9.18.3.tar.gz
   #sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
-  path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4
+  path: /home/vfonov/src/minc-toolkit-v2-1.9.18.9
 
 requirements:
   build:
-    - cmake
+    - cmake=3.31
     - make
     - flex
     - bison
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ compiler('fortran') }} 
+    - {{ compiler('fortran') }}
     - openblas            # [minctoolkit_variant == 'openblas'] 
-    - hdf5=={{hdf5}}
+    - hdf5 {{hdf5}}
     - pcre
-    - libnetcdf=={{libnetcdf}}
+    - libnetcdf {{libnetcdf}}
     - zlib
     - gsl
     - fftw
-    - jpeg
-    - openjpeg==2.3
+    - libjpeg-turbo
+    - openjpeg
     - perl
     - expat
     - {{ cdt('mesa-libgl-devel') }}  # [ minctoolkit_visual != 'novisual' ]
@@ -78,14 +78,13 @@ requirements:
     - freeglut # [ minctoolkit_visual != 'novisual' ]
   run:
     - perl
-    - hdf5=={{hdf5}}
-    - libnetcdf
+    - hdf5 {{hdf5}}
+    - libnetcdf {{libnetcdf}}
     - zlib
     - {{ pin_compatible('gsl', max_pin='x.x') }}
-    - jpeg
+    - libjpeg-turbo
     - {{ pin_compatible('fftw', max_pin='x.x') }}
     - {{ pin_compatible('openblas', max_pin='x.x') }}            # [minctoolkit_variant == 'openblas'] 
-    - jpeg
     - openjpeg
     - expat
     - pcre
@@ -104,7 +103,7 @@ test:
 
 build:
   number: 1
-  string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_hH{{ hdf5 | replace(".", "") }}_N{{ libnetcdf | replace(".", "") }}_C{{ c_compiler_version | replace(".", "") }}_{{ PKG_BUILDNUM }}
   force_use_keys:
     - hdf5
     - libnetcdf

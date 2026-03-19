@@ -1,5 +1,5 @@
 {% set name = "minc2-simple" %}
-{% set version = "0.2.30.3" %}
+{% set version = "0.2.40.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -11,7 +11,7 @@ source:
   path: /home/vfonov/src/minc2-simple
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} python/setup.py install "
 #  script: "{{ PYTHON }} -m build python  "
 #  script: python -m pip install --no-deps --ignore-installed python
@@ -20,13 +20,14 @@ requirements:
   host:
     - numpy
     - pip
+    - setuptools
     - python
     - minc-toolkit-v2 {{ minc_toolkit_v2 }}
     - cffi
     - six
   build:
-    - {{ compiler('c') }}        
-    - {{ compiler('cxx') }}      
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - setuptools
     - python
     - pip
