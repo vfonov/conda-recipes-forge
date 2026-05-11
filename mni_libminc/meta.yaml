@@ -1,6 +1,6 @@
 package:
   name: mni_libminc
-  version: "2.4.06.1"
+  version: "2.4.07"
 
 source:
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
@@ -10,7 +10,7 @@ source:
   #sha256: eda5424f1046dcf39e87b75e8d207edf381318af30228a655ec1c704f4fc8699
   #git_url: https://github.com/BIC-MNI/libminc.git
   #git_rev: develop
-  path: /home/vfonov/src/minc-toolkit-v2/libminc
+  path: /home/vfonov/src/minc-toolkit-v2-1.9.18.9/libminc
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.3/minc-toolkit-v2-1.9.18.3.tar.gz
   #sha256: 824d656af1b5184f896d0265cd41c533e7db4c656a1111a32ca574e666ea313a
   #path: /home/vfonov/src/minc-toolkit-v2-1.9.18.4/libminc
@@ -20,14 +20,15 @@ requirements:
     - cmake
     - make
     - {{ compiler('c') }}
-    - hdf5 {{hdf5}} nompi_*
-    - libnetcdf {{libnetcdf}} nompi_*
+    - hdf5 {{hdf5}}
+    - libnetcdf {{libnetcdf}}
+    - zlib
   host:
-#    - libzlib
+    - zlib
   run:
-    - hdf5 {{hdf5}} nompi_*
-    - libnetcdf {{libnetcdf}} nompi_*
-#    - zlib 
+    - hdf5 {{hdf5}}
+    - libnetcdf {{libnetcdf}}
+    - zlib
 
 # test:
 #   commands:
@@ -36,6 +37,7 @@ requirements:
 
 build:
   number: 1
+  string: hH{{ hdf5 | replace(".", "") }}_N{{ libnetcdf | replace(".", "") }}_{{ PKG_BUILDNUM }}
 #  string: {{ minctoolkit_variant }}_{{ minctoolkit_visual }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   # force_use_keys:
   #   - hdf5

@@ -46,6 +46,7 @@ elif [[ ${minctoolkit_variant} == "noblas" ]];then
  CMAKE_FLAGS=" \
   -DMT_BUILD_ITK_TOOLS:BOOL=ON \
   -DMT_BUILD_OPENBLAS:BOOL=OFF \
+  -DMT_USE_BLAS:BOOL=OFF \
   -DOpenBLAS_FOUND:BOOL=OFF \
   -DMT_BUILD_LITE:BOOL=OFF \
   -DMT_BUILD_ANTS:BOOL=ON \
@@ -59,6 +60,7 @@ elif [[ ${minctoolkit_variant} == "legacy" ]];then
   -DMT_BUILD_ITK_TOOLS:BOOL=ON \
   -DMT_BUILD_OPENBLAS:BOOL=OFF \
   -DOpenBLAS_FOUND:BOOL=OFF \
+  -DMT_USE_BLAS:BOOL=OFF \
   -DMT_BUILD_LITE:BOOL=OFF \
   -DMT_BUILD_ANTS:BOOL=ON \
   -DMT_BUILD_C3D:BOOL=ON \

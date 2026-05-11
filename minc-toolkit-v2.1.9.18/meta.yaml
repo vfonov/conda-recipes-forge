@@ -1,6 +1,6 @@
 package:
   name: minc-toolkit-v2
-  version: "1.9.18.9"
+  version: "1.9.18.10"
 
 source:
   #url: https://github.com/BIC-MNI/minc-toolkit-v2/releases/download/release-1.9.18.1/minc-toolkit-v2-1.9.18.1.tar.xz
